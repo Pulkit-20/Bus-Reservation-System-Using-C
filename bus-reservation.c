@@ -2,12 +2,58 @@
 #include <stdlib.h>
 #include <string.h>
 #include <termios.h>
-
+#include <unistd.h>
+#include <stdbool.h>
 char ch[10][130]={"Punjab Roadways","CTU","Volvo","Haryana Roadways","Zing Bus","Red Bus"};
 char name[32][100]={'\0'};
 char number[32][2]={'\0'};
 int num1[32]={0};
 int trno;
+// A utility function to reverse a string
+void reverse(char str[], int length)
+{
+    int start = 0;
+    int end = length - 1;
+    while (start < end) {
+        char temp = str[start];
+        str[start] = str[end];
+        str[end] = temp;
+        end--;
+        start++;
+    }
+}
+char* itoa(int num, char* str, int base)
+{
+    int i = 0;
+    bool isNegative = false;
+    /* Handle 0 explicitly, otherwise empty string is
+     * printed for 0 */
+    if (num == 0) {
+        str[i++] = '0';
+        str[i] = '\0';
+        return str;
+    }
+    // In standard itoa(), negative numbers are handled
+    // only with base 10. Otherwise numbers are
+    // considered unsigned.
+    if (num < 0 && base == 10) {
+        isNegative = true;
+        num = -num;
+    }
+    // Process individual digits
+    while (num != 0) {
+        int rem = num % base;
+        str[i++] = (rem > 9) ? (rem - 10) + 'a' : rem + '0';
+        num = num / base;
+    }
+	/ If number is negative, append '-'
+    if (isNegative)
+        str[i++] = '-';
+    str[i] = '\0'; // Append string terminator
+    // Reverse the string
+    reverse(str, i);
+    return str;
+}
 char getch(void){
     struct termios oldattr,newattr;
     char ch;
