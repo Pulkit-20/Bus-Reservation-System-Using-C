@@ -98,16 +98,17 @@ void login(){
     char user[10]="user";
     char pass[10]="pass";
     do{
-	    system("cls");
+	    system("clear");
         printf("\n  =========================  LOGIN FORM  =========================  ");
         printf(" \n                       ENTER USERNAME:-");
-        scanf("%s", &uname); 
+        scanf("%s", &uname);
+	while((getchar()) !='\n');
         printf(" \n                       ENTER PASSWORD:-");
         while(i<10)
         {
             pword[i]=getch();
             c=pword[i];
-            if(c==13) break;
+            if(c==10) break;
             else printf("*");
             i++;
         }
@@ -130,7 +131,7 @@ void login(){
 		printf("\nSorry you have entered the wrong username and password for four times!!!");
 		getch();
 	}
-	system("cls");	
+	system("clear");	
 }
 void read_name(int trno){//for putting the numeric value in the array{
     char tempstr1[12]="status";
@@ -185,7 +186,7 @@ int read_number(int trno){//for putting the numeric value in the array
 void status_1(int trno)
 {
     printf("Your Bus Number is %d ********** %s",trno,ch[trno-1]);
-    system("cls");
+    system("clear");
     printf("=========================================== BUS RESERVATION SYSTEM ============================================\n\n\n");
     int i,index=0,j;
     j=read_number(trno);
@@ -204,7 +205,7 @@ void status_1(int trno)
 }
 void bus()
 {
-    system("cls");
+    system("clear");
     printf("\n\n\n");
     printf("=========================================== BUS RESERVATION SYSTEM ============================================\n\n\n");
     printf("\t\t\t\t\t[1]  =>  %s\n",ch[0]);
@@ -220,12 +221,12 @@ void bus()
 void booking(){
     int i=0;
     char numstr[100];
-    system("cls");
+    system("clear");
     printf("=========================================== BUS RESERVATION SYSTEM ============================================\n\n\n");//for entering train number
     bus();//for seeing train least
     printf("Enter the Bus number:--->");
     scanf("%d",&trno);
-    system("cls");
+    system("clear");
     printf("=========================================== BUS RESERVATION SYSTEM ============================================\n\n\n");//for selecting coach
     printf("Your Bus Number is %d ********** %s",trno,ch[trno-1]);
     status_1(trno);
@@ -347,7 +348,7 @@ void cancel(){
     printf("======================================================================================================\n");
 }
 void status(){
-    system("cls");
+    system("clear");
     printf("=========================================== BUS RESERVATION SYSTEM ============================================\n\n\n");
     int i,trno,index=0,j;
     printf("Enter the number of bus:---->");
@@ -375,7 +376,7 @@ int main()
 	login();
     int num,i;
     do{
-        system("cls");
+        system("clear");
         printf("\n\n\n");
         printf("====================================== WELCOME TO BUS RESERVATION SYSTEM ======================================\n\n\n");
         printf("\t\t\t\t\t[1]=> View Bus List\n");
@@ -408,7 +409,7 @@ int main()
         getch();
     }
     while(num != 5);
-    system("CLS");
+    system("clear");
     printf("\t----------------------------------------------------------------------------------------------------------\n");
     printf("\t\t\t\t\tThank You For Using This System\t\t\t\t\t\t\n");
     printf("\t----------------------------------------------------------------------------------------------------------\n");
